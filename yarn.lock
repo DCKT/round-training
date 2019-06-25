@@ -836,6 +836,14 @@
     hoist-non-react-statics "^2.5.0"
     prop-types "^15.6.0"
 
+"@dck/spacer-native@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@dck/spacer-native/-/spacer-native-1.0.1.tgz#52b9d6b8e0b60a63883b2efbac56b8095307bba3"
+  integrity sha512-DgLeV1N82NO6BBL+j+stvmf5Yukx9OMD/LhL9rA6/OZIKM/FmKW+PaxX/V41jCBlZK+LzoZg+YDenI6h0Q3YmA==
+  dependencies:
+    bs-react-native-monorepo "https://github.com/reasonml-community/bs-react-native.git"
+    reason-react "0.7.0"
+
 "@expo/vector-icons@^10.0.1":
   version "10.0.2"
   resolved "https://registry.yarnpkg.com/@expo/vector-icons/-/vector-icons-10.0.2.tgz#63223bd4a97bb1943dc8ea947fc10b29cbf84e4e"
@@ -1395,6 +1403,10 @@ browserslist@^4.6.0, browserslist@^4.6.2:
     caniuse-lite "^1.0.30000975"
     electron-to-chromium "^1.3.164"
     node-releases "^1.1.23"
+
+"bs-react-native-monorepo@git+https://github.com/reasonml-community/bs-react-native.git":
+  version "0.0.0"
+  resolved "git+https://github.com/reasonml-community/bs-react-native.git#d1327242d6ade2c1d915184d9736e53d1f6b7d3d"
 
 bser@^2.0.0:
   version "2.1.0"
@@ -4628,7 +4640,7 @@ react-devtools-core@^3.6.0:
     shell-quote "^1.6.1"
     ws "^3.3.1"
 
-react-dom@^16.8.6:
+react-dom@>=16.8.1, react-dom@^16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.6.tgz#71d6303f631e8b0097f56165ef608f051ff6e10f"
   integrity sha512-1nL7PIq9LTL3fthPqwkvr2zY7phIPjYrT0jp4HjyEQrEROnw4dG41VVwi/wfoCneoleqrNX7iAD+pXebJZwrwA==
@@ -4669,6 +4681,13 @@ react-native-branch@2.2.5:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/react-native-branch/-/react-native-branch-2.2.5.tgz#4074dd63b4973e6397d9ce50e97b57c77a518e9d"
   integrity sha1-QHTdY7SXPmOX2c5Q6XtXx3pRjp0=
+
+react-native-circular-progress@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-circular-progress/-/react-native-circular-progress-1.1.0.tgz#5cb3efe570796226c59bf15a35250fb8b0d45025"
+  integrity sha512-4Fx7hDGUJyLHTc9fThnXmsW+ea3wjNC8xUwoTCnaL6W29ki9IJQZY9QiDzwtReDxHW6CvNiEzeYB3obNgOfUrQ==
+  dependencies:
+    prop-types "^15.6.2"
 
 react-native-gesture-handler@1.2.1:
   version "1.2.1"
@@ -4894,6 +4913,16 @@ react@16.8.3:
     prop-types "^15.6.2"
     scheduler "^0.13.3"
 
+react@>=16.8.1:
+  version "16.8.6"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"
+  integrity sha512-pC0uMkhLaHm11ZSJULfOBqV4tIZkx87ZLvbbQYunNixAAvjnC+snJCg0XQXn9VIsttVsbZP/H/ewzgsd5fxKXw==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    scheduler "^0.13.6"
+
 read-pkg-up@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/read-pkg-up/-/read-pkg-up-2.0.0.tgz#6b72a8048984e0c41e79510fd5e9fa99b3b549be"
@@ -4932,6 +4961,14 @@ readdirp@^2.2.1:
     graceful-fs "^4.1.11"
     micromatch "^3.1.10"
     readable-stream "^2.0.2"
+
+reason-react@0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/reason-react/-/reason-react-0.7.0.tgz#46a975c321e81cd51310d7b1a02418ca7667b0d6"
+  integrity sha512-czR/f0lY5iyLCki9gwftOFF5Zs40l7ZSFmpGK/Z6hx2jBVeFDmIiXB8bAQW/cO6IvtuEt97OmsYueiuOYG9XjQ==
+  dependencies:
+    react ">=16.8.1"
+    react-dom ">=16.8.1"
 
 recompose@^0.26.0:
   version "0.26.0"

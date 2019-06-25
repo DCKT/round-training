@@ -13,7 +13,7 @@ const AppNavigator = createStackNavigator(
   },
   {
     headerMode: "none",
-    initialRouteName: "config"
+    initialRouteName: "timer"
   }
 )
 

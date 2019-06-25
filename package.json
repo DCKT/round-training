@@ -9,6 +9,7 @@
     "test": "tsc"
   },
   "dependencies": {
+    "@dck/spacer-native": "1.0.1",
     "expo": "^33.0.0",
     "expo-asset": "^5.0.1",
     "expo-av": "~5.0.2",
@@ -17,6 +18,7 @@
     "react": "16.8.3",
     "react-dom": "^16.8.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
+    "react-native-circular-progress": "1.1.0",
     "react-native-paper": "^2.16.0",
     "react-native-slider": "^0.11.0",
     "react-native-svg": "~9.4.0",
