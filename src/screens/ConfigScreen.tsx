@@ -12,7 +12,10 @@ import {
 import i18n from "../locales"
 
 const cacheResourcesAsync = () => {
-  const sounds = [require("../../assets/sounds/roundEnd.mp3")]
+  const sounds = [
+    require("../../assets/sounds/rest.mp3"),
+    require("../../assets/sounds/roundEnd.mp3")
+  ]
 
   const cacheResources = sounds.map(sound => {
     return Asset.fromModule(sound).downloadAsync()

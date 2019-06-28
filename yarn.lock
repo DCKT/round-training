@@ -1404,9 +1404,9 @@ browserslist@^4.6.0, browserslist@^4.6.2:
     electron-to-chromium "^1.3.164"
     node-releases "^1.1.23"
 
-"bs-react-native-monorepo@git+https://github.com/reasonml-community/bs-react-native.git":
+"bs-react-native-monorepo@https://github.com/reasonml-community/bs-react-native.git":
   version "0.0.0"
-  resolved "git+https://github.com/reasonml-community/bs-react-native.git#d1327242d6ade2c1d915184d9736e53d1f6b7d3d"
+  resolved "https://github.com/reasonml-community/bs-react-native.git#d1327242d6ade2c1d915184d9736e53d1f6b7d3d"
 
 bser@^2.0.0:
   version "2.1.0"
