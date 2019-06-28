@@ -2,7 +2,6 @@ import React from "react"
 import { View, StyleSheet, Image } from "react-native"
 import { Audio } from "expo-av"
 import { Caption, Card, Title, Text } from "react-native-paper"
-import { Notifications } from "expo"
 import CountdownFullScreen from "../components/CountdownFullScreen"
 import {
   NavigationParams,
@@ -14,7 +13,6 @@ import {
 import { AnimatedCircularProgress } from "react-native-circular-progress"
 import { useKeepAwake } from "expo-keep-awake"
 import RestCard from "../components/RestCard"
-import { dismissNotifications } from "../utils/Notifications"
 
 const roundSound = new Audio.Sound()
 const restSound = new Audio.Sound()
@@ -117,25 +115,6 @@ export default function Timer({ navigation }: TimerProps) {
       clearInterval(state.intervalRef)
     }
   }, [])
-
-  React.useEffect(
-    () => {
-      if (state.round > 0) {
-        dismissNotifications()
-        Notifications.presentLocalNotificationAsync({
-          title: `Round ${state.round}`,
-          android: {
-            sticky: true
-          }
-        })
-      }
-
-      return () => {
-        dismissNotifications()
-      }
-    },
-    [state.round]
-  )
 
   React.useEffect(
     () => {
