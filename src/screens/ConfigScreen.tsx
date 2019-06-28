@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { StyleSheet, Text, View, Image } from "react-native"
 import { Button, Card, Title } from "react-native-paper"
 import { AppLoading } from "expo"
@@ -23,21 +23,11 @@ const cacheResourcesAsync = () => {
   return Promise.all(cacheResources)
 }
 
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    justifyContent: "center",
-    backgroundColor: "#f5f5f5",
-    padding: 20
-  },
-  submitBtn: { flex: 1, marginTop: 20 }
-})
-
 interface ConfigScreenProps {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>
 }
 
-function ConfigScreen({ navigation }: ConfigScreenProps) {
+export default function ConfigScreen({ navigation }: ConfigScreenProps) {
   const [isAppReady, setAppReady] = React.useState(false)
   const [numberOfRound, setNumberOfRound] = React.useState(5)
   const [roundDuration, setRoundDuration] = React.useState(3)
@@ -59,17 +49,10 @@ function ConfigScreen({ navigation }: ConfigScreenProps) {
         <Card.Content>
           <Image
             source={require("../../assets/gloves.png")}
-            style={{
-              flex: 0,
-              width: 150,
-              height: 150,
-              alignSelf: "center",
-              resizeMode: "contain",
-              marginBottom: 30
-            }}
+            style={styles.image}
           />
           <View>
-            <Title style={{ textAlign: "center" }}>
+            <Title style={styles.title}>
               {i18n.t("screens.config.numberOfRound")} {numberOfRound}
             </Title>
             <Slider
@@ -82,7 +65,7 @@ function ConfigScreen({ navigation }: ConfigScreenProps) {
           </View>
 
           <View>
-            <Title style={{ textAlign: "center" }}>
+            <Title style={styles.title}>
               {i18n.t("screens.config.roundDuration")} {roundDuration} min
             </Title>
             <Slider
@@ -95,7 +78,7 @@ function ConfigScreen({ navigation }: ConfigScreenProps) {
           </View>
 
           <View>
-            <Title style={{ textAlign: "center" }}>
+            <Title style={styles.title}>
               {i18n.t("screens.config.restDuration")}{" "}
               {i18n.t("utils.seconds", { value: restDuration })}
             </Title>
@@ -130,8 +113,21 @@ function ConfigScreen({ navigation }: ConfigScreenProps) {
   )
 }
 
-ConfigScreen.navigationOptions = {
-  title: "Round training"
-}
-
-export default ConfigScreen
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    justifyContent: "center",
+    backgroundColor: "#f5f5f5",
+    padding: 20
+  },
+  submitBtn: { flex: 1, marginTop: 20 },
+  image: {
+    flex: 0,
+    width: 150,
+    height: 150,
+    alignSelf: "center",
+    resizeMode: "contain",
+    marginBottom: 30
+  },
+  title: { textAlign: "center" }
+})

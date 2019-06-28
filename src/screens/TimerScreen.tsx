@@ -14,22 +14,10 @@ import {
 import { AnimatedCircularProgress } from "react-native-circular-progress"
 import { useKeepAwake } from "expo-keep-awake"
 import RestCard from "../components/RestCard"
+import { dismissNotifications } from "../utils/Notifications"
 
 const roundSound = new Audio.Sound()
 const restSound = new Audio.Sound()
-
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: "#F5F5F5",
-    padding: 15,
-    justifyContent: "center"
-  },
-  title: {
-    textAlign: "center"
-  },
-  svg: { marginTop: 30, alignSelf: "center" }
-})
 
 enum ActionType {
   RoundStarting = "round_starting",
@@ -133,9 +121,7 @@ export default function Timer({ navigation }: TimerProps) {
   React.useEffect(
     () => {
       if (state.round > 0) {
-        Notifications.dismissAllNotificationsAsync().catch(err => {
-          // handle
-        })
+        dismissNotifications()
         Notifications.presentLocalNotificationAsync({
           title: `Round ${state.round}`,
           android: {
@@ -145,9 +131,7 @@ export default function Timer({ navigation }: TimerProps) {
       }
 
       return () => {
-        Notifications.dismissAllNotificationsAsync().catch(err => {
-          // handle
-        })
+        dismissNotifications()
       }
     },
     [state.round]
@@ -167,33 +151,8 @@ export default function Timer({ navigation }: TimerProps) {
           }, 1000)
         }
 
-        if (state.countdownType === CountdownType.Initial) {
-          dispatch({
-            type: ActionType.RoundStarted,
-            payload: {
-              countdown: roundDuration,
-              intervalRef
-            }
-          })
-        } else if (state.countdownType === CountdownType.Round) {
-          restSound.playAsync()
-          dispatch({
-            type: ActionType.RoundEnd,
-            payload: {
-              countdown: restDuration,
-              intervalRef
-            }
-          })
-        } else if (state.countdownType === CountdownType.Rest) {
-          if (isLastRound) {
-            roundSound.playAsync()
-            navigation.dispatch(
-              StackActions.reset({
-                index: 0,
-                actions: [NavigationActions.navigate({ routeName: "config" })]
-              })
-            )
-          } else {
+        switch (state.countdownType) {
+          case CountdownType.Initial:
             dispatch({
               type: ActionType.RoundStarted,
               payload: {
@@ -201,12 +160,37 @@ export default function Timer({ navigation }: TimerProps) {
                 intervalRef
               }
             })
-          }
+            break
+          case CountdownType.Round:
+            restSound.replayAsync()
+            dispatch({
+              type: ActionType.RoundEnd,
+              payload: {
+                countdown: restDuration,
+                intervalRef
+              }
+            })
+            break
+          case CountdownType.Rest:
+            if (isLastRound) {
+              roundSound.replayAsync()
+              navigation.dispatch(
+                StackActions.reset({
+                  index: 0,
+                  actions: [NavigationActions.navigate({ routeName: "config" })]
+                })
+              )
+            } else {
+              dispatch({
+                type: ActionType.RoundStarted,
+                payload: {
+                  countdown: roundDuration,
+                  intervalRef
+                }
+              })
+            }
+            break
         }
-      }
-
-      return () => {
-        clearInterval(state.intervalRef)
       }
     },
     [state.countdown, state.countdownType]
@@ -258,3 +242,16 @@ export default function Timer({ navigation }: TimerProps) {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    backgroundColor: "#F5F5F5",
+    padding: 15,
+    justifyContent: "center"
+  },
+  title: {
+    textAlign: "center"
+  },
+  svg: { marginTop: 30, alignSelf: "center" }
+})
