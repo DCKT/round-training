@@ -132,6 +132,7 @@ export default function Timer({ navigation }: TimerProps) {
 
         switch (state.countdownType) {
           case CountdownType.Initial:
+            roundSound.replayAsync()
             dispatch({
               type: ActionType.RoundStarted,
               payload: {
@@ -151,8 +152,8 @@ export default function Timer({ navigation }: TimerProps) {
             })
             break
           case CountdownType.Rest:
+            roundSound.replayAsync()
             if (isLastRound) {
-              roundSound.replayAsync()
               navigation.dispatch(
                 StackActions.reset({
                   index: 0,
