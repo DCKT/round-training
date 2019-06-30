@@ -1,5 +1,5 @@
 import React from "react"
-import { View, StyleSheet, Image } from "react-native"
+import { View, StyleSheet } from "react-native"
 import { Audio } from "expo-av"
 import { Caption, Card, Title, Text } from "react-native-paper"
 import CountdownFullScreen from "../components/CountdownFullScreen"

@@ -1,13 +1,14 @@
 import React from "react"
-import { StyleSheet, Text, View, Image } from "react-native"
-import { Button, Card, Title } from "react-native-paper"
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native"
+import { Button, Card, Title, Paragraph } from "react-native-paper"
 import { AppLoading } from "expo"
 import { Asset } from "expo-asset"
 import Slider from "react-native-slider"
 import {
   NavigationParams,
   NavigationScreenProp,
-  NavigationState
+  NavigationState,
+  SafeAreaView
 } from "react-navigation"
 import i18n from "../locales"
 
@@ -44,7 +45,7 @@ export default function ConfigScreen({ navigation }: ConfigScreenProps) {
   }
 
   return (
-    <View style={styles.root}>
+    <SafeAreaView style={styles.root}>
       <Card>
         <Card.Content>
           <Image
@@ -109,7 +110,15 @@ export default function ConfigScreen({ navigation }: ConfigScreenProps) {
           </Button>
         </Card.Actions>
       </Card>
-    </View>
+      <TouchableOpacity
+        style={{ position: "absolute", bottom: 50, alignSelf: "center" }}
+        onPress={() => navigation.navigate("credits")}
+      >
+        <Paragraph style={styles.link}>
+          {i18n.t("screens.config.credits")}
+        </Paragraph>
+      </TouchableOpacity>
+    </SafeAreaView>
   )
 }
 
@@ -129,5 +138,6 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     marginBottom: 30
   },
-  title: { textAlign: "center" }
+  title: { textAlign: "center" },
+  link: { color: "#62b1ef", fontSize: 20 }
 })

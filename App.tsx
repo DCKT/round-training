@@ -1,5 +1,6 @@
 import ConfigScreen from "./src/screens/ConfigScreen"
 import TimerScreen from "./src/screens/TimerScreen"
+import CreditsScreen from "./src/screens/CreditsScreen"
 import { createStackNavigator, createAppContainer } from "react-navigation"
 
 const AppNavigator = createStackNavigator(
@@ -9,6 +10,9 @@ const AppNavigator = createStackNavigator(
     },
     timer: {
       screen: TimerScreen
+    },
+    credits: {
+      screen: CreditsScreen
     }
   },
   {
